@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="meta.title">House Partners — Compramos a sua casa de forma rápida, justa e sem complicações</title>
+  <meta name="description" data-i18n="meta.desc" content="A House Partners compra a sua casa de forma rápida em Portugal. Sem comissões, sem obras, oferta justa e rápida. Saiba como funciona e peça já a sua proposta." />
+
+  <!-- SEO / Social -->
+  <link rel="alternate" hreflang="pt-PT" href="https://o-seu-dominio.exemplo/" />
+  <link rel="alternate" hreflang="en" href="https://o-seu-dominio.exemplo/en" />
+  <meta property="og:title" data-i18n="meta.ogTitle" content="House Partners — Compramos a sua casa de forma rápida, justa e sem complicações" />
+  <meta property="og:description" data-i18n="meta.ogDesc" content="Somos compradores diretos. Sem comissões nem obras. Peça já a sua proposta sem compromisso." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://o-seu-dominio.exemplo/" />
+  <meta property="og:image" content="https://o-seu-dominio.exemplo/og-image.jpg" />
+
+  <!-- Brand font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* -----------------------------
+       Design tokens
+    --------------------------------*/
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #0f1630;
+      --surface: #121936;
+      --card: #151d42;
+      --primary: #5cc8ff;      /* accent cyan */
+      --secondary: #7cffbe;    /* accent green */
+      --ink: #eef2ff;          /* near-white text */
+      --ink-dim: #b6c0e9;
+      --muted: #7f8bb3;
+      --brand: var(--primary);
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(4, 12, 40, .5), 0 1px 0 rgba(255,255,255,.04) inset;
+      --container: 1120px;
+      --transition: 220ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    /* Base */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(92,200,255,.25), transparent 60%),
+        radial-gradient(900px 500px at -10% 10%, rgba(124,255,190,.20), transparent 60%),
+        linear-gradient(180deg, #0a0e1d 0%, #0c1226 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(100% - 2rem, var(--container)); margin-inline: auto; }
+
+    /* Topbar */
+    .topbar {
+      background: linear-gradient(90deg, rgba(92,200,255,.15), rgba(124,255,190,.12));
+      color: var(--ink);
+      font-size: .9rem;
+    }
+    .topbar .container {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .6rem 0; gap: 1rem;
+    }
+    .topbar a { color: var(--ink); opacity: .9; }
+    .topbar .cta-top {
+      padding: .4rem .8rem; border-radius: 999px;
+      background: rgba(124,255,190,.12); border: 1px solid rgba(124,255,190,.35);
+    }
+
+    /* Header / Nav */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: rgba(15,22,48,.6);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav {
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+      padding: .9rem 0;
+    }
+    .brand { display: inline-flex; align-items: center; gap: .6rem; font-weight: 700; letter-spacing: .3px; }
+    .brand-badge {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary), #4aa7ff);
+      display: grid; place-items: center; color: #061022; font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+    nav ul { list-style: none; display: flex; gap: 1.2rem; padding: 0; margin: 0; justify-content: center; }
+    nav a { color: var(--ink-dim); font-weight: 600; padding: .4rem .6rem; border-radius: 8px; }
+    nav a:hover { color: var(--ink); background: rgba(92,200,255,.10); }
+    .nav-cta { justify-self: end; display: flex; gap: .8rem; align-items: center; }
+
+    .btn, button {
+      appearance: none; border: 0; cursor: pointer; font-weight: 700;
+      padding: .9rem 1rem; border-radius: 12px; color: #061022;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+    }
+    .btn-primary { background: linear-gradient(180deg, var(--primary), #4aa7ff); box-shadow: 0 6px 20px rgba(92,200,255,.35); }
+    .btn-ghost { color: var(--ink); background: transparent; border: 1px solid rgba(255,255,255,.14); }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    /* Lang switcher */
+    .lang-switch {
+      display: inline-flex; align-items: center; gap: .4rem; border: 1px solid rgba(255,255,255,.14);
+      padding: .35rem .5rem; border-radius: 999px; background: rgba(255,255,255,.04);
+      color: var(--ink-dim); font-weight: 700; font-size: .9rem;
+    }
+    .lang-switch button {
+      background: transparent; color: inherit; padding: .35rem .6rem; border-radius: 999px;
+      border: 0; cursor: pointer;
+    }
+    .lang-switch button.active {
+      background: rgba(92,200,255,.14); color: var(--ink); border: 1px solid rgba(92,200,255,.35);
+    }
+
+    /* Hero */
+    .hero { position: relative; overflow: clip; padding: clamp(3rem, 6vw, 5.5rem) 0 3rem; }
+    .hero-grid { display: grid; gap: 2rem; align-items: center; grid-template-columns: 1.1fr .9fr; }
+    .hero h1 { font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.1; margin: 0 0 1rem; letter-spacing: .2px; }
+    .hero p.lead { color: var(--ink-dim); font-size: clamp(1rem, 1.4vw, 1.125rem); margin: 0 0 1.4rem; }
+    .hero .badges { display: flex; gap: .8rem; flex-wrap: wrap; margin: 1rem 0 1.4rem; }
+    .badge {
+      display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .75rem;
+      border-radius: 999px; font-weight: 700; font-size: .9rem;
+      background: rgba(92,200,255,.14); border: 1px solid rgba(92,200,255,.35);
+      color: var(--ink);
+    }
+    .badge--green { background: rgba(124,255,190,.12); border-color: rgba(124,255,190,.35); }
+    .hero-visual {
+      aspect-ratio: 4/3; border-radius: var(--radius); position: relative; overflow: hidden;
+      background:
+        radial-gradient(800px 400px at 70% -10%, rgba(92,200,255,.25), transparent 60%),
+        linear-gradient(180deg, #0f183a, #0c1430);
+      box-shadow: var(--shadow);
+    }
+    .hero-visual .frame { position: absolute; inset: 0; display: grid; place-items: center; }
+    .hero-visual svg { width: 90%; height: auto; opacity: .9; }
+
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    /* Sections */
+    section { padding: clamp(2.6rem, 6vw, 4rem) 0; }
+    .section-title { font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin: 0 0 1rem; }
+    .section-sub { color: var(--ink-dim); margin: 0 0 1.6rem; }
+
+    /* Cards/Steps */
+    .steps { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)); border: 1px solid rgba(255,255,255,.08);
+            border-radius: var(--radius); padding: 1.2rem; box-shadow: var(--shadow); }
+    .step-num {
+      width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+      background: rgba(92,200,255,.14); border: 1px solid rgba(92,200,255,.35);
+      font-weight: 800; color: var(--ink); margin-bottom: .8rem;
+    }
+    .card h3 { margin: .2rem 0 .6rem; font-size: 1.125rem; }
+    .card p { color: var(--ink-dim); margin: 0; }
+
+    /* Features */
+    .features { display: grid; gap: 1rem; grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .feature { padding: 1rem; border-radius: var(--radius); background: var(--surface); border: 1px solid rgba(255,255,255,.06); }
+    .feature strong { display: block; margin-bottom: .4rem; }
+    .feature p { color: var(--ink-dim); margin: 0; }
+
+    /* Testimonials */
+    .testimonials { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .quote { background: var(--card); border: 1px solid rgba(255,255,255,.06);
+             border-radius: var(--radius); padding: 1.2rem; box-shadow: var(--shadow); }
+    .quote .who { margin-top: .8rem; color: var(--muted); font-weight: 700; }
+
+    /* FAQ */
+    details { background: var(--surface); border: 1px solid rgba(255,255,255,.06);
+              border-radius: 12px; padding: .9rem 1rem; transition: border-color var(--transition), background var(--transition); }
+    details + details { margin-top: .8rem; }
+    summary { cursor: pointer; font-weight: 700; color: var(--ink); list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    details[open] { background: #16204a; border-color: rgba(92,200,255,.25); }
+    details p { color: var(--ink-dim); margin: .6rem 0 0; }
+
+    /* Form */
+    .form-wrap { display: grid; gap: 1.2rem; grid-template-columns: 1.1fr .9fr; align-items: start; }
+    form { background: var(--card); border: 1px solid rgba(255,255,255,.08);
+           border-radius: var(--radius); padding: 1rem; box-shadow: var(--shadow); }
+    label { display: block; font-weight: 700; margin: .6rem 0 .3rem; }
+    .inp, select, textarea {
+      width: 100%; padding: .8rem .9rem; border-radius: 10px; border: 1px solid rgba(255,255,255,.14);
+      background: #0e1533; color: var(--ink); outline: none; transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .inp:focus, select:focus, textarea:focus { border-color: rgba(92,200,255,.5); box-shadow: 0 0 0 3px rgba(92,200,255,.15); }
+    .form-row { display: grid; gap: .8rem; grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .help { color: var(--muted); font-size: .9rem; margin-top: .2rem; }
+    .aside { padding: 1rem; border-radius: var(--radius);
+             background: linear-gradient(180deg, rgba(92,200,255,.12), rgba(124,255,190,.12));
+             border: 1px solid rgba(255,255,255,.10); }
+    .aside ul { margin: .6rem 0 0; padding-left: 1.2rem; color: #071127; }
+    .aside li { margin: .3rem 0; font-weight: 700; color: #071127; }
+
+    /* Footer */
+    footer { margin-top: 2rem; padding: 2rem 0; border-top: 1px solid rgba(255,255,255,.08); color: var(--ink-dim); }
+    .footer-grid { display: grid; gap: 1rem; grid-template-columns: 1.2fr .8fr .8fr; }
+    .copyright { margin-top: 1rem; font-size: .9rem; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-grid, .form-wrap, .features, .testimonials { grid-template-columns: 1fr; }
+      .nav { grid-template-columns: 1fr auto; gap: 1rem; }
+      .nav-cta { gap: .6rem; }
+    }
+    @media (max-width: 720px) {
+      .steps { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar" aria-label="Barra de informação">
+    <div class="container">
+      <div data-i18n="topbar.contact">Dúvidas? Ligue: <a href="tel:+351000000000">+351 000 000 000</a></div>
+      <a class="cta-top" href="#offer" data-i18n="topbar.cta">Peça uma proposta gratuita</a>
+    </div>
+  </div>
+
+  <!-- Header / Nav -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Principal">
+      <a href="#top" class="brand" aria-label="House Partners">
+        <span class="brand-badge">HP</span>
+        <span>House Partners</span>
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="#how" data-i18n="nav.how">Como funciona</a></li>
+          <li><a href="#why" data-i18n="nav.why">Porque vender</a></li>
+          <li><a href="#testimonials" data-i18n="nav.reviews">Depoimentos</a></li>
+          <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="#faq" data-i18n="nav.questions">Dúvidas</a>
+        <a class="btn btn-primary" href="#offer" data-i18n="nav.offer">Pedir proposta</a>
+        <div class="lang-switch" aria-label="Selecionar idioma">
+          <button type="button" data-lang="pt" class="active">PT</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1 data-i18n="hero.title">Venda a sua casa rápido — justo, seguro e sem complicações</h1>
+        <p class="lead" data-i18n="hero.lead">
+          Somos compradores diretos. <strong>Sem agentes, sem comissões, sem obras</strong>.
+          Receba uma proposta justa e escolha a data de escritura ideal para si.
+        </p>
+
+        <div class="badges" aria-label="Indicadores de confiança">
+          <span class="badge" data-i18n="hero.badge1">Proposta em 24h*</span>
+          <span class="badge badge--green" data-i18n="hero.badge2">0% comissões</span>
+          <span class="badge" data-i18n="hero.badge3">Sem obras necessárias</span>
+          <span class="badge badge--green" data-i18n="hero.badge4">Escritura no seu prazo</span>
+        </div>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#offer" data-i18n="hero.cta1">Quero a minha proposta</a>
+          <a class="btn btn-ghost" href="#how" data-i18n="hero.cta2">Ver como funciona</a>
+        </div>
+        <br />
+        <p class="help" aria-live="polite" data-i18n="hero.disclaimer">*Exemplo de prazo — personalize consoante a sua operação.</p>
+      </div>
+
+      <!-- Visual (inline SVG) -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="frame">
+          <svg viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#5cc8ff"/>
+                <stop offset="1" stop-color="#7cffbe"/>
+              </linearGradient>
+            </defs>
+            <rect x="30" y="30" width="540" height="360" rx="24" fill="url(#g1)" opacity=".08" stroke="#4aa7ff" stroke-opacity=".28"/>
+            <g id="house" transform="translate(140,90)">
+              <polygon points="160,0 320,120 0,120" fill="#5cc8ff" opacity=".22"/>
+              <rect x="20" y="120" width="280" height="160" rx="16" fill="#7cffbe" opacity=".18"/>
+              <rect x="60" y="150" width="60" height="60" rx="10" fill="#ffffff" opacity=".9"/>
+              <rect x="180" y="150" width="60" height="60" rx="10" fill="#ffffff" opacity=".9"/>
+              <rect x="120" y="190" width="80" height="90" rx="12" fill="#5cc8ff" opacity=".9"/>
+            </g>
+            <g id="orbs">
+              <circle cx="80" cy="360" r="10" fill="#5cc8ff" opacity=".8"/>
+              <circle cx="520" cy="70" r="8" fill="#7cffbe" opacity=".8"/>
+              <circle cx="560" cy="320" r="6" fill="#5cc8ff" opacity=".7"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Como funciona -->
+  <section id="how">
+    <div class="container">
+      <h2 class="section-title" data-i18n="how.title">Como funciona</h2>
+      <p class="section-sub" data-i18n="how.sub">Um processo simples e transparente, pensado para o seu prazo.</p>
+
+      <div class="steps">
+        <div class="card">
+          <div class="step-num">1</div>
+          <h3 data-i18n="how.step1.title">Conte-nos sobre o imóvel</h3>
+          <p data-i18n="how.step1.text">Partilhe alguns detalhes. Marcamos uma visita rápida (virtual ou presencial).</p>
+        </div>
+        <div class="card">
+          <div class="step-num">2</div>
+          <h3 data-i18n="how.step2.title">Receba uma proposta justa</h3>
+          <p data-i18n="how.step2.text">Sem compromisso e sem ofertas abaixo do valor. Se fizer sentido, avançamos.</p>
+        </div>
+        <div class="card">
+          <div class="step-num">3</div>
+          <h3 data-i18n="how.step3.title">Escritura quando quiser</h3>
+          <p data-i18n="how.step3.text">Escolha a data. Tratamos da documentação e dos custos — sem obras.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Porque vender -->
+  <section id="why">
+    <div class="container">
+      <h2 class="section-title" data-i18n="why.title">Porque vender à House Partners?</h2>
+      <p class="section-sub" data-i18n="why.sub">Evite visitas, meses de incerteza e custos surpresa. Escolha a certeza.</p>
+
+      <div class="features">
+        <div class="feature">
+          <strong data-i18n="why.f1.title">Comprador direto</strong>
+          <p data-i18n="why.f1.text">Sem anúncios nem intermediários. Compramos o seu imóvel diretamente.</p>
+        </div>
+        <div class="feature">
+          <strong data-i18n="why.f2.title">Zero comissões</strong>
+          <p data-i18n="why.f2.text">Sem comissões nem custos escondidos. O valor proposto é o que recebe.</p>
+        </div>
+        <div class="feature">
+          <strong data-i18n="why.f3.title">Sem obras</strong>
+          <p data-i18n="why.f3.text">Venda no estado em que está. Tratamos de tudo após a escritura.</p>
+        </div>
+        <div class="feature">
+          <strong data-i18n="why.f4.title">Prazo flexível</strong>
+          <p data-i18n="why.f4.text">Desde fechos rápidos a prazos mais alargados — decide você.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section id="testimonials">
+    <div class="container">
+      <h2 class="section-title" data-i18n="test.title">O que dizem os vendedores</h2>
+      <p class="section-sub" data-i18n="test.sub">Experiências reais de quem escolheu uma venda mais simples.</p>
+
+      <div class="testimonials">
+        <blockquote class="quote" data-i18n="test.q1">
+          “Processo simples do início ao fim. Escolhi a data e trataram de tudo.”
+          <div class="who">— Ana M.</div>
+        </blockquote>
+        <blockquote class="quote" data-i18n="test.q2">
+          “Sem taxas e sem obras. O valor da proposta foi o mesmo na escritura.”
+          <div class="who">— Ricardo P.</div>
+        </blockquote>
+        <blockquote class="quote" data-i18n="test.q3">
+          “Claros, honestos e rápidos. Era exatamente o que precisava.”
+          <div class="who">— Sofia D.</div>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title" data-i18n="faq.title">Perguntas frequentes</h2>
+      <p class="section-sub" data-i18n="faq.sub">Respostas transparentes para decidir em confiança.</p>
+
+      <details>
+        <summary data-i18n="faq.q1.q">Em quanto tempo recebo uma proposta?</summary>
+        <p data-i18n="faq.q1.a">Normalmente em 24h após revermos os dados e, se necessário, uma visita rápida.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq.q2.q">Pago alguma taxa ou comissão?</summary>
+        <p data-i18n="faq.q2.a">Não. Somos compradores diretos, por isso não há comissões nem custos escondidos.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq.q3.q">Tenho de fazer obras ou limpezas?</summary>
+        <p data-i18n="faq.q3.a">Não. Venda como está; tratamos de tudo após a escritura.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq.q4.q">Em que zonas compram?</summary>
+        <p data-i18n="faq.q4.a">Atuamos principalmente em Portugal. Diga-nos onde é o imóvel e confirmamos a cobertura.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Proposta / Contacto -->
+  <section id="offer">
+    <div class="container">
+      <h2 class="section-title" data-i18n="offer.title">Peça a sua proposta gratuita</h2>
+      <p class="section-sub" data-i18n="offer.sub">Sem compromisso. Analisamos e respondemos rapidamente.</p>
+
+      <div class="form-wrap">
+        <form aria-label="Pedido de proposta" onsubmit="return handleSubmit(event)">
+          <div class="form-row">
+            <div>
+              <label for="name" data-i18n="form.name">Nome completo</label>
+              <input id="name" name="name" class="inp" required data-i18n-ph="form.name.ph" placeholder="O seu nome" />
+            </div>
+            <div>
+              <label for="email" data-i18n="form.email">Email</label>
+              <input id="email" name="email" type="email" class="inp" required placeholder="you@example.com" />
+            </div>
+            <div>
+              <label for="phone" data-i18n="form.phone">Telefone</label>
+              <input id="phone" name="phone" type="tel" class="inp" data-i18n-ph="form.phone.ph" placeholder="+351 ..." />
+            </div>
+            <div>
+              <label for="city" data-i18n="form.city">Cidade</label>
+              <input id="city" name="city" class="inp" data-i18n-ph="form.city.ph" placeholder="Lisboa, Porto, etc." />
+            </div>
+          </div>
+
+          <label for="address" data-i18n="form.address">Morada do imóvel</label>
+          <input id="address" name="address" class="inp" data-i18n-ph="form.address.ph" placeholder="Rua, número" />
+
+          <div class="form-row">
+            <div>
+              <label for="type" data-i18n="form.type">Tipo de imóvel</label>
+              <select id="type" name="type">
+                <option value="apartment" data-i18n="form.type.opt.apartment">Apartamento</option>
+                <option value="house" data-i18n="form.type.opt.house">Moradia</option>
+                <option value="duplex" data-i18n="form.type.opt.duplex">Duplex</option>
+                <option value="other" data-i18n="form.type.opt.other">Outro</option>
+              </select>
+            </div>
+            <div>
+              <label for="timeline" data-i18n="form.timeline">Prazo ideal para a escritura</label>
+              <select id="timeline" name="timeline">
+                <option value="asap" data-i18n="form.timeline.opt.asap">O mais rápido possível</option>
+                <option value="30" data-i18n="form.timeline.opt.30">~30 dias</option>
+                <option value="60" data-i18n="form.timeline.opt.60">~60 dias</option>
+                <option value="flex" data-i18n="form.timeline.opt.flex">Flexível</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="notes" data-i18n="form.notes">Mais alguma informação?</label>
+          <textarea id="notes" name="notes" rows="4" class="inp" data-i18n-ph="form.notes.ph" placeholder="Ex.: estado do imóvel, circunstâncias específicas..."></textarea>
+
+          <div style="margin-top: 1rem; display: flex; gap: .8rem; align-items: center; flex-wrap: wrap;">
+            <button class="btn btn-primary" type="submit" data-i18n="form.submit">Pedir proposta</button>
+            <span class="help" data-i18n="form.consent">Ao submeter, concorda em ser contactado relativamente ao seu pedido.</span>
+          </div>
+        </form>
+
+        <aside class="aside" aria-label="O que acontece a seguir">
+          <h3 style="margin-top:0;" data-i18n="aside.title">O que acontece a seguir?</h3>
+          <ul>
+            <li data-i18n="aside.li1">Analisamos os seus dados no próprio dia.</li>
+            <li data-i18n="aside.li2">Ligamos para confirmar alguns pontos (e agendar uma visita se necessário).</li>
+            <li data-i18n="aside.li3">Recebe uma proposta justa e sem compromisso.</li>
+            <li data-i18n="aside.li4">Se aceitar, tratamos da papelada e da escritura.</li>
+          </ul>
+          <p class="help" style="margin-top:.8rem;color:#0a1230;" data-i18n="aside.help">
+            Tem dúvidas? <a href="mailto:hello@housepartners.exemplo">hello@housepartners.exemplo</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">
+            <span class="brand-badge">HP</span>
+            <span>House Partners</span>
+          </div>
+          <p class="help" style="margin-top:.6rem;" data-i18n="footer.tagline">
+            Somos compradores diretos — uma venda simples e transparente, sem comissões nem obras.
+          </p>
+        </div>
+        <div>
+          <strong data-i18n="footer.company">Empresa</strong>
+          <div style="margin-top:.6rem; display:flex; flex-direction:column; gap:.4rem;">
+            <a href="#how" data-i18n="nav.how">Como funciona</a>
+            <a href="#why" data-i18n="nav.why">Porque vender</a>
+            <a href="#faq" data-i18n="nav.faq">FAQ</a>
+          </div>
+        </div>
+        <div>
+          <strong data-i18n="footer.contact">Contacto</strong>
+          <div style="margin-top:.6rem; display:flex; flex-direction:column; gap:.4rem;">
+            <a href="tel:+351000000000">+351 000 000 000</a>
+            <a href="mailto:hello@housepartners.exemplo">hello@housepartners.exemplo</a>
+            <span class="help" data-i18n="footer.location">Lisboa, Portugal</span>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        © <span id="year"></span> House Partners. <span data-i18n="footer.rights">Todos os direitos reservados</span>. |
+        <a href="#" data-i18n="footer.terms">Termos</a> · <a href="#" data-i18n="footer.privacy">Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- i18n dictionary + script -->
+  <script>
+    // Translations (PT is default)
+    const I18N = {
+      pt: {
+        "meta.title": "House Partners — Compramos a sua casa de forma rápida, justa e sem complicações",
+        "meta.desc": "A House Partners compra a sua casa de forma rápida em Portugal. Sem comissões, sem obras, oferta justa e rápida. Saiba como funciona e peça já a sua proposta.",
+        "meta.ogTitle": "House Partners — Compramos a sua casa de forma rápida, justa e sem complicações",
+        "meta.ogDesc": "Somos compradores diretos. Sem comissões nem obras. Peça já a sua proposta sem compromisso.",
+
+        "topbar.contact": "Dúvidas? Ligue: <a href=\"tel:+351000000000\">+351 000 000 000</a>",
+        "topbar.cta": "Peça uma proposta gratuita",
+
+        "nav.how": "Como funciona",
+        "nav.why": "Porque vender",
+        "nav.reviews": "Depoimentos",
+        "nav.faq": "FAQ",
+        "nav.questions": "Dúvidas",
+        "nav.offer": "Pedir proposta",
+
+        "hero.title": "Venda a sua casa rápido — justo, seguro e sem complicações",
+        "hero.lead": "Somos compradores diretos. <strong>Sem agentes, sem comissões, sem obras</strong>. Receba uma proposta justa e escolha a data de escritura ideal para si.",
+        "hero.badge1": "Proposta em 24h*",
+        "hero.badge2": "0% comissões",
+        "hero.badge3": "Sem obras necessárias",
+        "hero.badge4": "Escritura no seu prazo",
+        "hero.cta1": "Quero a minha proposta",
+        "hero.cta2": "Ver como funciona",
+        "hero.disclaimer": "*Exemplo de prazo — personalize consoante a sua operação.",
+
+        "how.title": "Como funciona",
+        "how.sub": "Um processo simples e transparente, pensado para o seu prazo.",
+        "how.step1.title": "Conte-nos sobre o imóvel",
+        "how.step1.text": "Partilhe alguns detalhes. Marcamos uma visita rápida (virtual ou presencial).",
+        "how.step2.title": "Receba uma proposta justa",
+        "how.step2.text": "Sem compromisso e sem ofertas abaixo do valor. Se fizer sentido, avançamos.",
+        "how.step3.title": "Escritura quando quiser",
+        "how.step3.text": "Escolha a data. Tratamos da documentação e dos custos — sem obras.",
+
+        "why.title": "Porque vender à House Partners?",
+        "why.sub": "Evite visitas, meses de incerteza e custos surpresa. Escolha a certeza.",
+        "why.f1.title": "Comprador direto",
+        "why.f1.text": "Sem anúncios nem intermediários. Compramos o seu imóvel diretamente.",
+        "why.f2.title": "Zero comissões",
+        "why.f2.text": "Sem comissões nem custos escondidos. O valor proposto é o que recebe.",
+        "why.f3.title": "Sem obras",
+        "why.f3.text": "Venda no estado em que está. Tratamos de tudo após a escritura.",
+        "why.f4.title": "Prazo flexível",
+        "why.f4.text": "Desde fechos rápidos a prazos mais alargados — decide você.",
+
+        "test.title": "O que dizem os vendedores",
+        "test.sub": "Experiências reais de quem escolheu uma venda mais simples.",
+        "test.q1": "“Processo simples do início ao fim. Escolhi a data e trataram de tudo.”",
+        "test.q2": "“Sem taxas e sem obras. O valor da proposta foi o mesmo na escritura.”",
+        "test.q3": "“Claros, honestos e rápidos. Era exatamente o que precisava.”",
+
+        "faq.title": "Perguntas frequentes",
+        "faq.sub": "Respostas transparentes para decidir em confiança.",
+        "faq.q1.q": "Em quanto tempo recebo uma proposta?",
+        "faq.q1.a": "Normalmente em 24h após revermos os dados e, se necessário, uma visita rápida.",
+        "faq.q2.q": "Pago alguma taxa ou comissão?",
+        "faq.q2.a": "Não. Somos compradores diretos, por isso não há comissões nem custos escondidos.",
+        "faq.q3.q": "Tenho de fazer obras ou limpezas?",
+        "faq.q3.a": "Não. Venda como está; tratamos de tudo após a escritura.",
+        "faq.q4.q": "Em que zonas compram?",
+        "faq.q4.a": "Atuamos principalmente em Portugal. Diga-nos onde é o imóvel e confirmamos a cobertura.",
+
+        "offer.title": "Peça a sua proposta gratuita",
+        "offer.sub": "Sem compromisso. Analisamos e respondemos rapidamente.",
+
+        "form.name": "Nome completo",
+        "form.name.ph": "O seu nome",
+        "form.email": "Email",
+        "form.phone": "Telefone",
+        "form.phone.ph": "+351 ...",
+        "form.city": "Cidade",
+        "form.city.ph": "Lisboa, Porto, etc.",
+        "form.address": "Morada do imóvel",
+        "form.address.ph": "Rua, número",
+        "form.type": "Tipo de imóvel",
+        "form.type.opt.apartment": "Apartamento",
+        "form.type.opt.house": "Moradia",
+        "form.type.opt.duplex": "Duplex",
+        "form.type.opt.other": "Outro",
+        "form.timeline": "Prazo ideal para a escritura",
+        "form.timeline.opt.asap": "O mais rápido possível",
+        "form.timeline.opt.30": "~30 dias",
+        "form.timeline.opt.60": "~60 dias",
+        "form.timeline.opt.flex": "Flexível",
+        "form.notes": "Mais alguma informação?",
+        "form.notes.ph": "Ex.: estado do imóvel, circunstâncias específicas...",
+        "form.submit": "Pedir proposta",
+        "form.consent": "Ao submeter, concorda em ser contactado relativamente ao seu pedido.",
+
+        "aside.title": "O que acontece a seguir?",
+        "aside.li1": "Analisamos os seus dados no próprio dia.",
+        "aside.li2": "Ligamos para confirmar alguns pontos (e agendar uma visita se necessário).",
+        "aside.li3": "Recebe uma proposta justa e sem compromisso.",
+        "aside.li4": "Se aceitar, tratamos da papelada e da escritura.",
+        "aside.help": "Tem dúvidas? <a href=\"mailto:hello@housepartners.exemplo\">hello@housepartners.exemplo</a>",
+
+        "footer.tagline": "Somos compradores diretos — uma venda simples e transparente, sem comissões nem obras.",
+        "footer.company": "Empresa",
+        "footer.contact": "Contacto",
+        "footer.location": "Lisboa, Portugal",
+        "footer.rights": "Todos os direitos reservados",
+        "footer.terms": "Termos",
+        "footer.privacy": "Privacidade"
+      },
+
+      en: {
+        "meta.title": "House Partners — We Buy Homes Fast, Fair & Hassle‑Free",
+        "meta.desc": "House Partners buys homes fast in Portugal. No fees, no repairs, fair offer fast. Learn how it works and request your free offer today.",
+        "meta.ogTitle": "House Partners — We Buy Homes Fast, Fair & Hassle‑Free",
+        "meta.ogDesc": "We are direct buyers. No fees or repairs. Request your no‑obligation offer today.",
+
+        "topbar.contact": "Questions? Call: <a href=\"tel:+351000000000\">+351 000 000 000</a>",
+        "topbar.cta": "Get a free offer",
+
+        "nav.how": "How it works",
+        "nav.why": "Why sell",
+        "nav.reviews": "Reviews",
+        "nav.faq": "FAQ",
+        "nav.questions": "Questions",
+        "nav.offer": "Get an offer",
+
+        "hero.title": "Sell your home fast — fair, safe and hassle‑free",
+        "hero.lead": "We’re direct buyers. <strong>No agents, no fees, no repairs</strong>. Get a fair offer and pick your ideal closing date.",
+        "hero.badge1": "Offer in 24h*",
+        "hero.badge2": "0% commissions",
+        "hero.badge3": "No repairs needed",
+        "hero.badge4": "Close on your timeline",
+        "hero.cta1": "Get my offer",
+        "hero.cta2": "See how it works",
+        "hero.disclaimer": "*Example timeline — customize to your operations.",
+
+        "how.title": "How it works",
+        "how.sub": "A simple, transparent process designed around your timeline.",
+        "how.step1.title": "Tell us about the property",
+        "how.step1.text": "Share a few details. We’ll schedule a quick visit (virtual or in‑person).",
+        "how.step2.title": "Receive a fair offer",
+        "how.step2.text": "No obligations and no low‑balling. If it works for you, we move forward.",
+        "how.step3.title": "Close when you’re ready",
+        "how.step3.text": "Pick a date that suits you. We handle paperwork and costs—no repairs needed.",
+
+        "why.title": "Why sell to House Partners?",
+        "why.sub": "Skip showings, months of uncertainty, and surprise fees. Choose certainty.",
+        "why.f1.title": "Direct buyer",
+        "why.f1.text": "No listings or middlemen. We purchase your home directly.",
+        "why.f2.title": "Zero fees",
+        "why.f2.text": "No commissions or hidden costs. What we offer is what you receive.",
+        "why.f3.title": "No repairs",
+        "why.f3.text": "Sell as‑is. We handle any work after closing.",
+        "why.f4.title": "Flexible closing",
+        "why.f4.text": "From fast closings to extended timelines—your call.",
+
+        "test.title": "What sellers say",
+        "test.sub": "Real experiences from homeowners who chose a simpler sale.",
+        "test.q1": "“Smooth from start to finish. I picked the date, and they handled everything.”",
+        "test.q2": "“No fees and no repairs. The offer matched what I received at closing.”",
+        "test.q3": "“Clear, honest, and fast. Exactly what I needed.”",
+
+        "faq.title": "Frequently asked questions",
+        "faq.sub": "Transparent answers to help you decide confidently.",
+        "faq.q1.q": "How fast can I get an offer?",
+        "faq.q1.a": "Typically within 24 hours after we review details and, if needed, a quick visit.",
+        "faq.q2.q": "Do I pay any fees or commissions?",
+        "faq.q2.a": "No. We’re direct buyers, so there are no agent fees or hidden costs.",
+        "faq.q3.q": "Do I need to fix or clean anything?",
+        "faq.q3.a": "No repairs required. Sell as‑is; we’ll handle anything post‑closing.",
+        "faq.q4.q": "What areas do you buy in?",
+        "faq.q4.a": "We primarily operate in Portugal. Tell us about your property and we’ll confirm coverage.",
+
+        "offer.title": "Request your free offer",
+        "offer.sub": "No obligations. We’ll review and get back to you fast.",
+
+        "form.name": "Full name",
+        "form.name.ph": "Your name",
+        "form.email": "Email",
+        "form.phone": "Phone",
+        "form.phone.ph": "+351 ...",
+        "form.city": "City",
+        "form.city.ph": "Lisbon, Porto, etc.",
+        "form.address": "Property address",
+        "form.address.ph": "Street, number",
+        "form.type": "Property type",
+        "form.type.opt.apartment": "Apartment",
+        "form.type.opt.house": "House",
+        "form.type.opt.duplex": "Duplex",
+        "form.type.opt.other": "Other",
+        "form.timeline": "Ideal closing timeline",
+        "form.timeline.opt.asap": "ASAP",
+        "form.timeline.opt.30": "~30 days",
+        "form.timeline.opt.60": "~60 days",
+        "form.timeline.opt.flex": "Flexible",
+        "form.notes": "Anything else we should know?",
+        "form.notes.ph": "E.g., condition, special circumstances...",
+        "form.submit": "Get my offer",
+        "form.consent": "By submitting, you agree to be contacted about your request.",
+
+        "aside.title": "What happens next?",
+        "aside.li1": "We review your details the same day.",
+        "aside.li2": "We’ll call to confirm a few items (and schedule a quick visit if needed).",
+        "aside.li3": "You receive a fair, no‑obligation offer.",
+        "aside.li4": "If you accept, we handle paperwork and closing.",
+        "aside.help": "Have questions? <a href=\"mailto:hello@housepartners.exemplo\">hello@housepartners.exemplo</a>",
+
+        "footer.tagline": "We’re a direct home buyer—offering a simple, transparent sale without fees or repairs.",
+        "footer.company": "Company",
+        "footer.contact": "Contact",
+        "footer.location": "Lisbon, Portugal",
+        "footer.rights": "All rights reserved",
+        "footer.terms": "Terms",
+        "footer.privacy": "Privacy"
+      }
+    };
+
+    // Apply translations to elements with data-i18n (innerHTML) and data-i18n-ph (placeholder)
+    function applyI18n(lang) {
+      const dict = I18N[lang] || I18N.pt;
+      // Text nodes / HTML content
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) el.innerHTML = dict[key];
+      });
+      // Placeholders
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (dict[key]) el.setAttribute('placeholder', dict[key]);
+      });
+      // Update html lang attribute
+      document.documentElement.setAttribute('lang', lang === 'pt' ? 'pt-PT' : 'en');
+      // Update active state on switcher
+      document.querySelectorAll('.lang-switch button').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      // Update meta tags that have data-i18n
+      const metaTitle = dict["meta.title"];
+      if (metaTitle) document.title = metaTitle;
+      const metaDesc = document.querySelector('meta[name="description"][data-i18n="meta.desc"]');
+      if (metaDesc && dict["meta.desc"]) metaDesc.setAttribute('content', dict["meta.desc"]);
+      const ogT = document.querySelector('meta[property="og:title"][data-i18n="meta.ogTitle"]');
+      if (ogT && dict["meta.ogTitle"]) ogT.setAttribute('content', dict["meta.ogTitle"]);
+      const ogD = document.querySelector('meta[property="og:description"][data-i18n="meta.ogDesc"]');
+      if (ogD && dict["meta.ogDesc"]) ogD.setAttribute('content', dict["meta.ogDesc"]);
+      // Persist choice
+      localStorage.setItem('hp_lang', lang);
+    }
+
+    function initI18n() {
+      const stored = localStorage.getItem('hp_lang');
+      const lang = stored || 'pt';
+      applyI18n(lang);
+      document.querySelectorAll('.lang-switch button').forEach(btn => {
+        btn.addEventListener('click', () => applyI18n(btn.dataset.lang));
+      });
+    }
+
+    // Form submission demo
+    function handleSubmit(e) {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      // TODO: replace with real submission (fetch to your endpoint or form service)
+      console.log('Offer request:', data);
+      const btn = e.target.querySelector('button[type="submit"]');
+      const prev = btn.textContent;
+      btn.textContent = (document.documentElement.lang === 'pt-PT') ? 'A enviar...' : 'Submitting...';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = (document.documentElement.lang === 'pt-PT') ? 'Pedido enviado ✓' : 'Request sent ✓';
+        btn.style.background = 'linear-gradient(180deg, #7cffbe, #51ecaa)';
+      }, 900);
+      return false;
+    }
+
+    // Year
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      initI18n();
+    });
+
+    // GSAP animations (respect reduced motion)
+    (function() {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced || !window.gsap) return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.8 } });
+      tl.from('.brand', { y: -20, autoAlpha: 0 })
+        .from('.nav ul li', { y: -12, autoAlpha: 0, stagger: 0.06 }, '<+.1')
+        .from('.hero h1', { y: 20, autoAlpha: 0 }, '-=.1')
+        .from('.hero p.lead', { y: 20, autoAlpha: 0 }, '-=.4')
+        .from('.badge', { y: 10, autoAlpha: 0, stagger: 0.06 }, '-=.4')
+        .from('.hero-cta .btn', { y: 10, autoAlpha: 0, stagger: 0.06 }, '-=.4')
+        .from('.hero-visual', { scale: 0.96, autoAlpha: 0 }, '-=.5');
+
+      gsap.to('#house', { y: -6, repeat: -1, yoyo: true, duration: 3, ease: 'sine.inOut' });
+      gsap.to('#orbs circle', { y: -8, repeat: -1, yoyo: true, duration: 4, ease: 'sine.inOut', stagger: .3 });
+
+      gsap.utils.toArray('section').forEach((sec) => {
+        const items = sec.querySelectorAll('.card, .feature, .quote, details, form, .aside');
+        if (items.length) {
+          gsap.from(items, {
+            scrollTrigger: { trigger: sec, start: 'top 78%', toggleActions: 'play none none reverse' },
+            y: 24, autoAlpha: 0, stagger: 0.06, duration: 0.7, ease: 'power2.out'
+          });
+        }
+      });
+    })();
+  </script>
+
+  <!-- Structured data (ajuste os seus dados reais) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "House Partners",
+    "url": "https://o-seu-dominio.exemplo/",
+    "logo": "https://o-seu-dominio.exemplo/logo.png",
+    "sameAs": []
+  }
+  </script>
+</body>
+</html>
