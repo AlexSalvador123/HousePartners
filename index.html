@@ -312,6 +312,28 @@
       border: 1px solid rgba(14,165,233,.15);
       font-weight: 800; color: var(--primary); margin-bottom: .8rem;
     }
+    .step-illustration {
+      margin-bottom: .9rem;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--bg-soft);
+      box-shadow: 0 6px 18px rgba(15,23,42,.08);
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-illustration img {
+      display: block;
+      height: 100%;
+      width: auto;
+      max-width: 100%;
+      object-fit: cover;
+    }
+    .step-icon-home svg {
+      width: 96px;
+      height: 96px;
+    }
     .card h3 { margin: .2rem 0 .6rem; font-size: 1.125rem; color: var(--ink); }
     .card p { color: var(--ink-dim); margin: 0; line-height: 1.6; }
 
@@ -722,16 +744,25 @@
 
       <div class="steps">
         <div class="card">
+          <div class="step-illustration">
+            <img src="https://i.imgur.com/Gx0SyMZ.png" alt="Ilustração do passo 1 - partilhar detalhes do imóvel" loading="lazy" />
+          </div>
           <div class="step-num">1</div>
           <h3 data-i18n="how.step1.title">Conte-nos sobre o imóvel</h3>
           <p data-i18n="how.step1.text">Partilhe alguns detalhes. Marcamos uma visita rápida (virtual ou presencial).</p>
         </div>
         <div class="card">
+          <div class="step-illustration">
+            <img src="https://i.imgur.com/Ye8I9xr.png" alt="Ilustração do passo 2 - receber uma proposta justa" loading="lazy" />
+          </div>
           <div class="step-num">2</div>
           <h3 data-i18n="how.step2.title">Receba uma proposta justa</h3>
           <p data-i18n="how.step2.text">Sem compromisso e sem ofertas abaixo do valor. Se fizer sentido, avançamos.</p>
         </div>
         <div class="card">
+          <div class="step-illustration">
+            <img src="https://i.imgur.com/PfH2uks.png" alt="Ilustração do passo 3 - escritura quando quiser" loading="lazy" />
+          </div>
           <div class="step-num">3</div>
           <h3 data-i18n="how.step3.title">Escritura quando quiser</h3>
           <p data-i18n="how.step3.text">Escolha a data. Tratamos da documentação e dos custos — sem obras.</p>
